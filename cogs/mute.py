@@ -41,7 +41,7 @@ class Mute(commands.Cog):
         mutedRole = discord.utils.find(
             lambda r: r.id == config['mutedRole'], ctx.guild.roles)
         await member.add_roles(mutedRole)
-        await ctx.reply(f'**{member.mention} Kullanıcısı {seconds} dakika susturuldu**')
+        await ctx.reply(f'**{member.mention} Kullanıcısı {seconds} saniyeliğine susturuldu**')
 
         with open(mutesPath, 'w', encoding='UTF-8') as file:
             json.dump(mutes, file, indent=4)

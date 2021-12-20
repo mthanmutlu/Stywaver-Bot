@@ -32,7 +32,6 @@ class Mutes():
                         member: Member = discord.utils.find(
                             lambda m: m.id == memberId, guild.members)
                         await member.remove_roles(mutedRole)
-                        print('Time is up!')
                     else:
                         pass
 
