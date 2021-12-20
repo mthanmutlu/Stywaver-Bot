@@ -1,3 +1,4 @@
 discord
 pandas
 pynacl
+python-dotenv
