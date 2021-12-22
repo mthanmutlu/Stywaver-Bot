@@ -16,9 +16,23 @@ class Mute(commands.Cog):
     def __init__(self, client: Bot) -> None:
         self.client = client
 
+    def convertTime(self, time):
+        pos = ['sn', 'dk', 'sa', 'gn']
+        time_dict = {'sn': 1, 'dk': 60, 'sa': 3600, 'g': 3600*24}
+        unit = time[-2::]
+        # print(unit)
+        if unit not in pos:
+            return -1
+        try:
+            val = int(time[:-2])
+            # print(val)
+        except:
+            return -2
+        return val*time_dict[unit]
+
     @commands.has_permissions(kick_members=True)
     @commands.command(name='mute')
-    async def mute(self, ctx: Context, member: Member, seconds: int):
+    async def mute(self, ctx: Context, member: Member, time: str = '1dk'):
         mutesPath = os.path.dirname(__file__) + '/../mutes.json'
         configPath = os.path.dirname(__file__) + '/../config.json'
         with open(mutesPath, encoding='UTF-8') as file:
@@ -31,6 +45,9 @@ class Mute(commands.Cog):
 
         # if user_id not in mutes:
         createdAt = datetime.now()
+        print(time)
+        seconds = self.convertTime(time)
+        print(seconds)
         delta = timedelta(seconds=seconds)  # Seconds ~ Minutes
         endsAt = createdAt + delta
         mutes[user_id] = {

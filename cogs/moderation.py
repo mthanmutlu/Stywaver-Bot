@@ -28,6 +28,21 @@ class Moderation(commands.Cog):
         embed.set_thumbnail(url=member.avatar_url)
         await ctx.send(embed=embed)
 
+    @commands.has_permissions(ban_members=True)
+    @commands.command(name='unban')
+    async def unban(self, ctx: Context, *, member):
+        banned_users = await ctx.guild.bans()
+        member_name, member_discriminator = member.split("#")
+        for ban_entry in banned_users:
+            user = ban_entry.user
+            if (user.name, user.discriminator) == (member_name, member_discriminator):
+                await ctx.guild.unban(user)
+                embed = discord.Embed(color=randColor(), title="Kullanıcının yasağı kaldırıldı",
+                                      description=f'**{user.mention} Kullanıcısının yasağı {ctx.author.mention} tarafından kaldırıldı**', timestamp=ctx.message.created_at)
+                embed.set_thumbnail(url=user.avatar_url)
+                await ctx.send(embed=embed)
+                return
+
     @commands.has_permissions(kick_members=True)
     @commands.command(name='kick')
     async def kick(self, ctx: Context, member: Member, *, reason: str = None):

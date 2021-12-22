@@ -21,12 +21,14 @@ class Help(commands.Cog):
         embed.title = 'HELP'
         permissions: discord.Permissions = ctx.author.top_role.permissions
         if permissions.kick_members or permissions.administrator:
-            embed.add_field(name=f'`{prefix}mute <@Kullanıcı / Kullanıcı ID> <Saniye>`',
-                            value=f'e.g => **{prefix}mute @mEDE 40**', inline=False)
+            embed.add_field(name=f'`{prefix}mute <@Kullanıcı / Kullanıcı ID> <Süre (sn, dk, sa, gn)>`',
+                            value=f'e.g => **{prefix}mute @mEDE 1sa**', inline=False)
             embed.add_field(name=f'`{prefix}unmute <@Kullanıcı / Kullanıcı ID>`',
                             value=f'e.g => **{prefix}unmute @mEDE**', inline=False)
             embed.add_field(name=f'`{prefix}ban <@Kullanıcı / Kullanıcı ID> <Sebep>`',
                             value=f'e.g => **{prefix}ban @mEDE Küfürden dolayı banlandı.**', inline=False)
+            embed.add_field(name=f'`{prefix}unban <Kullanıcı#4444>`',
+                            value=f'e.g => **{prefix}unban mEDE#4444**', inline=False)
             embed.add_field(name=f'`{prefix}kick <@Kullanıcı / Kullanıcı ID> <Sebep>`',
                             value=f'e.g => **{prefix}kick @mEDE Hakaretten dolayı atıldı.**', inline=False)
             embed.add_field(name=f'`{prefix}clear <Silinecek Mesaj Sayısı>`',
