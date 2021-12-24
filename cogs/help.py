@@ -13,6 +13,7 @@ class Help(commands.Cog):
     def __init__(self, client: Bot) -> None:
         self.client = client
 
+
     @commands.command(name='help')
     async def help(self, ctx: Context):
         prefix = '.'
